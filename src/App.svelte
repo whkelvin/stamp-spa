@@ -1,4 +1,8 @@
 <script lang="ts">
+  import Router from "svelte-spa-router";
+  import routes from "./routes";
 </script>
 
-<button class="btn">Hello daisyui</button>
+<main>
+  <Router {routes} />
+</main>
