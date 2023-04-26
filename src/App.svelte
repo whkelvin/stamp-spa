@@ -6,6 +6,7 @@
 <main>
   <div class="navbar bg-neutral text-neutral-content">
     <div class="flex-none">
+      <!--
       <button class="btn btn-square btn-ghost">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -20,11 +21,10 @@
           /></svg
         >
       </button>
+      -->
     </div>
     <div class="flex-1">
-      <button class="btn btn-ghost text-xl text-bold text-primary normal-case"
-        >Stamp</button
-      >
+      <div class="ml-4 text-xl font-bold text-primary">Stamp</div>
     </div>
   </div>
   <Router {routes} />

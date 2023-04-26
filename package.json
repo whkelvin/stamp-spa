@@ -5,15 +5,20 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build-production": "vite build",
+    "build-development": "vite build --mode development",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "start": "npx http-server ./dist"
+    "start": "npx http-server ./dist",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.3",
     "@tsconfig/svelte": "^4.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
     "autoprefixer": "^10.4.14",
+    "eslint": "^8.39.0",
     "postcss": "^8.4.23",
     "svelte": "^3.57.0",
     "svelte-check": "^2.10.3",
@@ -24,6 +29,8 @@
   },
   "dependencies": {
     "daisyui": "^2.51.5",
+    "dotenv": "^16.0.3",
+    "stamp-api-client": "https://github.com/whkelvin/stamp-api-client.git",
     "svelte-spa-router": "^3.3.0"
   }
 }

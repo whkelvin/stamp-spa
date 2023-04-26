@@ -1,47 +1,28 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import YoutubePost from "../components/YoutubePost.svelte";
+  import { PostApi, Configuration } from "stamp-api-client";
+  import { STAMP_API_BASE_URL } from "../configs/constants";
 
-  let postResultSet = {
-    count: 3,
-    page: 1,
-    pageSize: 5,
-    totalPages: 3,
-    posts: [
-      {
-        id: "helfae",
-        link: "https://www.youtube.com/embed/vpaCxG-4qEY",
-        title: "Design Microservice the right way",
-        postedDate: "2023-04-28",
-        rootDomain: "youtube.com",
-        description: "hell world this is the description",
-      },
-      {
-        id: "sfeoij",
-        link: "https://www.youtube.com/embed/j6ow-UemzBc",
-        title: "Design Microservice the right way",
-        postedDate: "2023-04-28",
-        rootDomain: "youtube.com",
-        description: "hell world this is the description",
-      },
-      {
-        id: "chasefoij",
-        link: "https://www.youtube.com/embed/j6ow-UemzBc",
-        title: "Design Microservice the right way",
-        postedDate: "2023-04-28",
-        rootDomain: "youtube.com",
-        description: "hell world this is the description",
-      },
-    ],
-  };
+  let posts = [];
 
-  onMount(async () => {});
+  onMount(async () => {
+    const config = new Configuration({
+      basePath: STAMP_API_BASE_URL,
+    });
+    const postApi = new PostApi(config);
+    const res = await postApi.getRecentPosts({
+      page: 1,
+      size: 5,
+    });
+    posts = res.posts;
+  });
 </script>
 
 <div class="max-w-2xl mx-auto">
   <div class="mx-auto container text-xl font-bold p-5">Home</div>
 
-  {#each postResultSet.posts as post}
+  {#each posts as post}
     <YoutubePost {...post} />
   {/each}
 </div>
