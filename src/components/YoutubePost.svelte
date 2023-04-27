@@ -5,9 +5,9 @@
   export let description: string = "lorem lorem ";
 </script>
 
-<div class="container bg-neutral sm:rounded-lg p-5 mx-auto mt mb-2 sm:mb-5 ">
-  <div class="text-xl font-bold">{title}</div>
-  <div class="text-sm font-bold">shared by: whkelvin source: {rootDomain}</div>
+<div class="container bg-neutral sm:rounded-lg p-5 mx-auto mt mb-2 sm:mb-5">
+  <div class="text-xl font-bold mb-1">{title}</div>
+  <span class="badge badge-primary">Source: {rootDomain}</span>
 
   <iframe
     class="pt-5 pb-5"

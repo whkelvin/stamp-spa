@@ -31,6 +31,7 @@
     "daisyui": "^2.51.5",
     "dotenv": "^16.0.3",
     "stamp-api-client": "https://github.com/whkelvin/stamp-api-client.git",
+    "svelte-infinite-loading": "^1.3.8",
     "svelte-spa-router": "^3.3.0"
   }
 }

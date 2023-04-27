@@ -3,10 +3,9 @@
   import routes from "./routes";
 </script>
 
-<main>
-  <div class="navbar bg-neutral text-neutral-content">
+<main class="w-full">
+  <div class="navbar bg-neutral text-neutral-content w-full">
     <div class="flex-none">
-      <!--
       <button class="btn btn-square btn-ghost">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +20,6 @@
           /></svg
         >
       </button>
-      -->
     </div>
     <div class="flex-1">
       <div class="ml-4 text-xl font-bold text-primary">Stamp</div>
