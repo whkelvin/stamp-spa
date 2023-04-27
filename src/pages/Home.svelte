@@ -21,7 +21,6 @@
         size: pageSize,
       });
 
-      console.log(res.count);
       if (res.count != 0) {
         page++;
         posts = [...posts, res.posts];
