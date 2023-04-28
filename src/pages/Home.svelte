@@ -1,29 +1,29 @@
 <script lang="ts">
   //import { onMount } from "svelte";
   import YoutubePost from "../components/YoutubePost.svelte";
-  import { PostApi, Configuration } from "stamp-api-client";
+  import * as stamp from "stamp-api-client";
   import { STAMP_API_BASE_URL } from "../configs/constants";
   import InfiniteLoading from "svelte-infinite-loading";
 
-  const config = new Configuration({
+  const config = new stamp.Configuration({
     basePath: STAMP_API_BASE_URL,
   });
-  const postApi = new PostApi(config);
+  const postApi = new stamp.PostApi(config);
 
   let page = 1;
   const pageSize = 2;
-  let posts = [];
+  let posts: stamp.Post[] = [];
 
   async function onLoadMorePosts({ detail: { loaded, complete, error } }) {
     try {
-      const res = await postApi.getRecentPosts({
+      const res: stamp.PostResultSet = await postApi.getRecentPosts({
         page: page,
         size: pageSize,
       });
 
       if (res.count != 0) {
         page++;
-        posts = [...posts, res.posts];
+        posts = posts.concat(res.posts);
         loaded();
       } else {
         complete();
