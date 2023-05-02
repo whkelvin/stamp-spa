@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{html,js,svelte,ts}"],
-  theme: {
-    extend: {},
-  },
   plugins: [require("daisyui")],
   daisyui: {
     themes: [
@@ -23,5 +20,14 @@ export default {
         },
       },
     ],
+  },
+  theme: {
+    extend: {
+      // Adds a new breakpoint in addition to the default breakpoints
+      colors: {
+        youtube: "#BF616A",
+        github: "#222222",
+      },
+    },
   },
 };

@@ -6,8 +6,10 @@
 </script>
 
 <div class="container bg-neutral sm:rounded-lg p-5 mx-auto mt mb-2 sm:mb-5">
-  <div class="text-xl font-bold mb-1">{title}</div>
-  <span class="badge badge-primary">Source: {rootDomain}</span>
+  <div class="text-xl font-bold mb-1">
+    <a class="link" href={link} target="_blank">{title}</a>
+  </div>
+  <span class="badge bg-youtube text-white">Source: {rootDomain}</span>
 
   <iframe
     class="pt-5 pb-5"

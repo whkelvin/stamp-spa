@@ -1,6 +1,7 @@
 <script lang="ts">
   //import { onMount } from "svelte";
   import YoutubePost from "../components/YoutubePost.svelte";
+  import GithubPost from "../components/GithubPost.svelte";
   import * as stamp from "stamp-api-client";
   import { STAMP_API_BASE_URL } from "../configs/constants";
   import InfiniteLoading from "svelte-infinite-loading";
@@ -43,7 +44,13 @@
   <div class="mx-auto container text-xl font-bold p-5">Home</div>
 
   {#each posts as post}
-    <YoutubePost {...post} />
+    {#if post.rootDomain == "youtube.com"}
+      <YoutubePost {...post} />
+    {/if}
+
+    {#if post.rootDomain == "github.com"}
+      <GithubPost {...post} />
+    {/if}
   {/each}
 
   <div class="m-3">
