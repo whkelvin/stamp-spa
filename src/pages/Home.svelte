@@ -10,31 +10,25 @@
   });
   const postApi = new stamp.PostApi(config);
 
-  let page = 1;
+  let lastFetchedItemId = "";
   const pageSize = 7;
   let posts: stamp.Post[] = [];
   let hasPageLoaded = {};
 
   async function onLoadMorePosts({ detail: { loaded, complete, error } }) {
     try {
-      console.log(`page ${page} loaded? ${hasPageLoaded[page]}`);
-      if (hasPageLoaded[page]) {
-        console.log("page" + page + "has loaded");
+      if (hasPageLoaded[lastFetchedItemId]) {
         return;
       }
-      console.log(`loading page` + page);
       const res: stamp.PostResultSet = await postApi.getRecentPosts({
-        page: page,
+        lastFetchedItemId: lastFetchedItemId,
         size: pageSize,
       });
 
       if (res.count != 0) {
-        hasPageLoaded[page] = true;
-        page++;
+        hasPageLoaded[lastFetchedItemId] = true;
+        lastFetchedItemId = res.posts.at(-1).id;
         posts = posts.concat(res.posts);
-        res.posts.forEach((post) => {
-          console.log(post.id);
-        });
         loaded();
       } else {
         complete();
