@@ -5,7 +5,9 @@
   export let description: string = "lorem lorem ";
 </script>
 
-<div class="container bg-neutral sm:rounded-lg p-5 mx-auto mt mb-2 sm:mb-5">
+<div
+  class="container bg-neutral sm:rounded-lg p-5 mx-auto mb-2 sm:mb-5 drop-shadow-lg"
+>
   <div class="text-xl font-bold mb-1">
     <a class="link" href={link} target="_blank">{title}</a>
   </div>
