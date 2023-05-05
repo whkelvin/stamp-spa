@@ -5,6 +5,8 @@
   import * as stamp from "stamp-api-client";
   import { STAMP_API_BASE_URL } from "../configs/constants";
   import InfiniteLoading from "svelte-infinite-loading";
+  import ShareIsland from "../components/ShareIsland.svelte";
+  import Emoji from "../components/icons/Emoji.svelte";
 
   const config = new stamp.Configuration({
     basePath: STAMP_API_BASE_URL,
@@ -43,6 +45,7 @@
 <div class="max-w-2xl mx-auto">
   <div class="mx-auto container text-xl font-bold p-5">Home</div>
 
+  <ShareIsland />
   {#each posts as post}
     {#if post.rootDomain == "youtube.com"}
       <YoutubePost {...post} />
@@ -60,19 +63,11 @@
         class="alert alert-info mb-2 sm:mb-5 container mx-auto"
       >
         <div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            class="h-6 w-6 flex-shrink-0 stroke-current"
-            ><path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            /></svg
-          >
-          <span>More Coming Soon!</span>
+          <div>
+            <Emoji symbol="🚧" label="construction" />
+            <span class="font-bold ml-2 mr-2">More Coming Soon!</span>
+            <Emoji symbol="🚧" label="construction" />
+          </div>
         </div>
       </div>
 
