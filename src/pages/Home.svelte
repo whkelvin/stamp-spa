@@ -2,28 +2,30 @@
   //import { onMount } from "svelte";
   import YoutubePost from "../components/YoutubePost.svelte";
   import GithubPost from "../components/GithubPost.svelte";
-  import * as stamp from "stamp-api-client";
+  import type { Post, PostResultSet } from "stamp-api-client";
+  import { Configuration, PostApi } from "stamp-api-client";
   import { STAMP_API_BASE_URL } from "../configs/constants";
   import InfiniteLoading from "svelte-infinite-loading";
   import ShareIsland from "../components/ShareIsland.svelte";
   import Emoji from "../components/icons/Emoji.svelte";
+  import { postsFeedStore } from "../store/postsFeedStore";
 
-  const config = new stamp.Configuration({
+  const config = new Configuration({
     basePath: STAMP_API_BASE_URL,
   });
-  const postApi = new stamp.PostApi(config);
+  const postApi = new PostApi(config);
 
   let lastFetchedItemId = "";
   const pageSize = 7;
-  let posts: stamp.Post[] = [];
   let hasPageLoaded = {};
 
   async function onLoadMorePosts({ detail: { loaded, complete, error } }) {
+    console.log("logging more posts");
     try {
       if (hasPageLoaded[lastFetchedItemId]) {
         return;
       }
-      const res: stamp.PostResultSet = await postApi.getRecentPosts({
+      const res: PostResultSet = await postApi.getRecentPosts({
         lastFetchedItemId: lastFetchedItemId,
         size: pageSize,
       });
@@ -31,7 +33,10 @@
       if (res.count != 0) {
         hasPageLoaded[lastFetchedItemId] = true;
         lastFetchedItemId = res.posts.at(-1).id;
-        posts = posts.concat(res.posts);
+        postsFeedStore.update((posts: Post[]) => {
+          posts = posts.concat(res.posts);
+          return posts;
+        });
         loaded();
       } else {
         complete();
@@ -40,13 +45,17 @@
       error();
     }
   }
+
+  function onRefresh() {
+    console.log("refresh!!");
+  }
 </script>
 
 <div class="max-w-2xl mx-auto">
   <div class="mx-auto container text-xl font-bold p-5">Home</div>
 
   <ShareIsland />
-  {#each posts as post}
+  {#each $postsFeedStore as post}
     {#if post.rootDomain == "youtube.com"}
       <YoutubePost {...post} />
     {/if}

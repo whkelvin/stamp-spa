@@ -1,6 +1,9 @@
 <script lang="ts">
   import YoutubeIcon from "./icons/YoutubeIcon.svelte";
   import GithubIcon from "./icons/GithubIcon.svelte";
+  import { ModalType, openModal } from "../services/ModalService";
+  import CreateYoutubePostModal from "./modals/CreateYoutubePostModal.svelte";
+  import ComingSoonModal from "./modals/ComingSoonModal.svelte";
 </script>
 
 <div
@@ -12,16 +15,19 @@
 
   <ul class="menu menu-horizontal bg-neutral">
     <li>
-      <label for="coming-soon-modal" class="btn">
+      <button
+        class="btn"
+        on:click={() => openModal(ModalType.CreateYoutubePostModal)}
+      >
         <YoutubeIcon />
         Youtube
-      </label>
+      </button>
     </li>
     <li>
-      <label for="coming-soon-modal" class="btn">
+      <button class="btn" on:click={() => openModal(ModalType.ComingSoonModal)}>
         <GithubIcon />
         Github
-      </label>
+      </button>
     </li>
   </ul>
 </div>
