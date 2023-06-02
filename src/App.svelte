@@ -9,6 +9,8 @@
   import { onMount } from "svelte";
   import { isTokenExpired } from "./services/JWTService";
   import { stampToken } from "./store/loginStore";
+  import NotificationsWrapper from "./components/notifications/NotificationsWrapper.svelte";
+  import Notification from "./components/notifications/Notification.svelte";
 
   onMount(() => {
     const token = window.localStorage.getItem("stampToken");
@@ -21,6 +23,7 @@
 </script>
 
 <main class="w-full">
+  <NotificationsWrapper />
   <Sidebar>
     <NavBar />
     <Router {routes} />

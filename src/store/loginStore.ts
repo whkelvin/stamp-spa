@@ -16,7 +16,7 @@ export const username = derived<Writable<string>, string>(
 
 export const isUserLoggedIn = derived<Writable<string>, boolean>(
   stampToken,
-  ($stampToken) => $stampToken != ""
+  (stampToken) => stampToken != ""
 );
 
 export const refreshTokenIntervalId = writable<number | null>(null);
