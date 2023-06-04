@@ -6,6 +6,11 @@
   import { ModalType, openModal } from "../../services/ModalService";
   import { ResponseError } from "stamp-api-client";
   import { postsFeedStore } from "../../store/postsFeedStore";
+  import {
+    NotificationType,
+    type Notification,
+    sendNotification,
+  } from "../../store/notificationsStore";
 
   let title = "";
   let link = "";
@@ -43,6 +48,11 @@
           responseError?.response?.status == 401 ||
           responseError?.response?.status == 403
         ) {
+          sendNotification({
+            id: crypto.randomUUID.toString(),
+            description: "Please log in first.",
+            type: NotificationType.warning,
+          });
           openModal(ModalType.LoginModal);
         }
       } else {
@@ -59,7 +69,7 @@
 />
 <label
   for={ModalType.CreateYoutubePostModal.toString()}
-  class="modal modal-bottom sm:modal-middle cursor-pointer"
+  class="modal modal-bottom sm:modal-middle cursor-pointer z-10"
 >
   <div class="modal-box">
     <div class="flex">

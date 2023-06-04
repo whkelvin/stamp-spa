@@ -19,7 +19,7 @@
 />
 <label
   for={ModalType.LoginModal.toString()}
-  class="modal modal-bottom sm:modal-middle cursor-pointer"
+  class="modal modal-bottom sm:modal-middle cursor-pointer z-10"
 >
   <label class="modal-box relative" for="">
     <div class="flex">

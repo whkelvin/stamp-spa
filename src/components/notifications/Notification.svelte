@@ -20,18 +20,6 @@
       visible = false;
     }, 2000);
   });
-
-  function getClasses() {
-    if (notification.type == NotificationType.info) {
-      return "alert alert-info shadow-lg mb-2 mt-2";
-    }
-    if (notification.type == NotificationType.warning) {
-      return "alert alert-warning shadow-lg mb-2 mt-2";
-    }
-    if (notification.type == NotificationType.error) {
-      return "alert alert-error shadow-lg mb-2 mt-2";
-    }
-  }
 </script>
 
 {#if visible}
