@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import * as constants from "../configs/constants";
+import * as constants from "../../configs/constants";
 import { readable } from "svelte/store";
 
 const firebaseConfig = {

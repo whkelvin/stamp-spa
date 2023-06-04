@@ -1,16 +1,16 @@
 <script lang="ts">
   import Emoji from "../icons/Emoji.svelte";
   import * as stamp from "stamp-api-client";
-  import { STAMP_API_BASE_URL } from "../../configs/constants";
-  import { stampToken } from "../../store/loginStore";
+  import { STAMP_API_BASE_URL } from "../../../configs/constants";
+  import { stampToken } from "../../../data/store/loginStore";
   import { ModalType, openModal } from "../../services/ModalService";
   import { ResponseError } from "stamp-api-client";
-  import { postsFeedStore } from "../../store/postsFeedStore";
+  import { postsFeedStore } from "../../services/PostFeedService";
   import {
     NotificationType,
     type Notification,
     sendNotification,
-  } from "../../store/notificationsStore";
+  } from "../../services/NotificationService";
 
   let title = "";
   let link = "";

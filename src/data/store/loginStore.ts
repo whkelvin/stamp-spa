@@ -1,4 +1,4 @@
-import { writable, readable, derived, Writable } from "svelte/store";
+import { writable, readable, derived, type Writable } from "svelte/store";
 import { parseJwt } from "../services/JWTService";
 
 export const stampToken = writable<string>("");

@@ -1,16 +1,16 @@
 <script lang="ts">
-  import NavBar from "./components/NavBar.svelte";
+  import NavBar from "./ui/components/NavBar.svelte";
   import Router from "svelte-spa-router";
   import routes from "./routes";
-  import ComingSoonModal from "./components/modals/ComingSoonModal.svelte";
-  import Sidebar from "./components/Sidebar.svelte";
-  import LoginModal from "./components/modals/LoginModal.svelte";
-  import CreateYoutubePostModal from "./components/modals/CreateYoutubePostModal.svelte";
+  import ComingSoonModal from "./ui/components/modals/ComingSoonModal.svelte";
+  import Sidebar from "./ui/components/Sidebar.svelte";
+  import LoginModal from "./ui/components/modals/LoginModal.svelte";
+  import CreateYoutubePostModal from "./ui/components/modals/CreateYoutubePostModal.svelte";
   import { onMount } from "svelte";
-  import { isTokenExpired } from "./services/JWTService";
-  import { stampToken } from "./store/loginStore";
-  import NotificationsWrapper from "./components/notifications/NotificationsWrapper.svelte";
-  import Notification from "./components/notifications/Notification.svelte";
+  import { isTokenExpired } from "./data/services/JWTService";
+  import { stampToken } from "./data/store/loginStore";
+  import NotificationsWrapper from "./ui/components/notifications/NotificationsWrapper.svelte";
+  import Notification from "./ui/components/notifications/Notification.svelte";
 
   onMount(() => {
     const token = window.localStorage.getItem("stampToken");

@@ -1,6 +1,6 @@
-import Home from "./pages/Home.svelte";
-import Theme from "./pages/Theme.svelte";
-import Demo from "./pages/Demo.svelte";
+import Home from "./ui/pages/Home.svelte";
+import Theme from "./ui/pages/Theme.svelte";
+import Demo from "./ui/pages/Demo.svelte";
 
 export default {
   "/": Home,

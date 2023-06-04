@@ -1,5 +1,3 @@
-import { closeModal } from "./ModalService";
-
 export interface UserClaim {
   authProviderName: string;
   isAdmin: boolean;

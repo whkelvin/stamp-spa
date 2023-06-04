@@ -7,7 +7,7 @@ import {
 import { firebaseApp } from "../store/firebaseStore";
 import { get } from "svelte/store";
 import * as stamp from "stamp-api-client";
-import { STAMP_API_BASE_URL } from "../configs/constants";
+import { STAMP_API_BASE_URL } from "../../configs/constants";
 import { stampToken, refreshTokenIntervalId } from "../store/loginStore";
 
 const config = new stamp.Configuration({

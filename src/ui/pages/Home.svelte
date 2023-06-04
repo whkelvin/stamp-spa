@@ -4,11 +4,11 @@
   import GithubPost from "../components/GithubPost.svelte";
   import type { Post, PostResultSet } from "stamp-api-client";
   import { Configuration, PostApi } from "stamp-api-client";
-  import { STAMP_API_BASE_URL } from "../configs/constants";
+  import { STAMP_API_BASE_URL } from "../../configs/constants";
   import InfiniteLoading from "svelte-infinite-loading";
   import ShareIsland from "../components/ShareIsland.svelte";
   import Emoji from "../components/icons/Emoji.svelte";
-  import { postsFeedStore } from "../store/postsFeedStore";
+  import { postsFeedStore } from "../services/PostFeedService";
 
   const config = new Configuration({
     basePath: STAMP_API_BASE_URL,

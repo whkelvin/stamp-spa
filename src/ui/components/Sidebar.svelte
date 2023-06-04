@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { signOut } from "../services/AuthService";
-  import { isUserLoggedIn, username } from "../store/loginStore";
+  import { signOut } from "../../data/services/AuthService";
+  import { isUserLoggedIn, username } from "../../data/store/loginStore";
   import Emoji from "./icons/Emoji.svelte";
   import { ModalType, openModal } from "../services/ModalService";
-  import { generateCoolName } from "../services/NameGenerator";
+  import { generateCoolName } from "../../data/services/NameGenerator";
 </script>
 
 <div class="drawer">
