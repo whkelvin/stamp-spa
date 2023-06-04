@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { signOut } from "../../data/services/AuthService";
+  import { signOut } from "../../data/services/authService";
   import StampIcon from "./icons/StampIcon.svelte";
   import { isUserLoggedIn } from "../../data/store/loginStore";
-  import { ModalType, openModal } from "../services/ModalService";
+  import { ModalType, openModal } from "../services/modalService";
   import { username } from "../../data/store/loginStore";
   import Emoji from "./icons/Emoji.svelte";
 </script>

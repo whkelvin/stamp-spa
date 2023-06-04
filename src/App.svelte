@@ -7,7 +7,7 @@
   import LoginModal from "./ui/components/modals/LoginModal.svelte";
   import CreateYoutubePostModal from "./ui/components/modals/CreateYoutubePostModal.svelte";
   import { onMount } from "svelte";
-  import { isTokenExpired } from "./data/services/JWTService";
+  import { isTokenExpired } from "./data/services/jwtService";
   import { stampToken } from "./data/store/loginStore";
   import NotificationsWrapper from "./ui/components/notifications/NotificationsWrapper.svelte";
   import Notification from "./ui/components/notifications/Notification.svelte";

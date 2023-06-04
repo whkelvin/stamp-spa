@@ -4,7 +4,7 @@
   import {
     NotificationType,
     type Notification,
-  } from "../../services/NotificationService";
+  } from "../../services/notificationService";
 
   export let notification: Notification = {
     id: "",

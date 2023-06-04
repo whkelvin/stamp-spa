@@ -4,7 +4,7 @@
     NotificationType,
     type Notification,
     sendNotification,
-  } from "../services/NotificationService";
+  } from "../services/notificationService";
 
   function addNotification() {
     const noti: Notification = {

@@ -1,6 +1,6 @@
 <script lang="ts">
   import Emoji from "../icons/Emoji.svelte";
-  import { ModalType } from "../../services/ModalService";
+  import { ModalType } from "../../services/modalService";
 </script>
 
 <input

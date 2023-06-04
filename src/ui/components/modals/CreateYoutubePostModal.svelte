@@ -3,14 +3,14 @@
   import * as stamp from "stamp-api-client";
   import { STAMP_API_BASE_URL } from "../../../configs/constants";
   import { stampToken } from "../../../data/store/loginStore";
-  import { ModalType, openModal } from "../../services/ModalService";
+  import { ModalType, openModal } from "../../services/modalService";
   import { ResponseError } from "stamp-api-client";
-  import { postsFeedStore } from "../../services/PostFeedService";
+  import { postsFeedStore } from "../../services/postFeedService";
   import {
     NotificationType,
     type Notification,
     sendNotification,
-  } from "../../services/NotificationService";
+  } from "../../services/notificationService";
 
   let title = "";
   let link = "";

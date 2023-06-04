@@ -1,9 +1,9 @@
 <script lang="ts">
   import Emoji from "../icons/Emoji.svelte";
-  import { signInWithGithub } from "../../../data/services/AuthService";
+  import { signInWithGithub } from "../../../data/services/authService";
   import GithubIcon from "../icons/GithubIcon.svelte";
   import { isUserLoggedIn } from "../../../data/store/loginStore";
-  import { ModalType, closeModal } from "../../services/ModalService";
+  import { ModalType, closeModal } from "../../services/modalService";
 
   $: {
     if ($isUserLoggedIn) {

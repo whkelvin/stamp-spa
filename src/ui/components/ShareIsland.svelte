@@ -1,7 +1,7 @@
 <script lang="ts">
   import YoutubeIcon from "./icons/YoutubeIcon.svelte";
   import GithubIcon from "./icons/GithubIcon.svelte";
-  import { ModalType, openModal } from "../services/ModalService";
+  import { ModalType, openModal } from "../services/modalService";
   import CreateYoutubePostModal from "./modals/CreateYoutubePostModal.svelte";
   import ComingSoonModal from "./modals/ComingSoonModal.svelte";
 </script>

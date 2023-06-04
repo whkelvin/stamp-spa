@@ -8,7 +8,7 @@
   import InfiniteLoading from "svelte-infinite-loading";
   import ShareIsland from "../components/ShareIsland.svelte";
   import Emoji from "../components/icons/Emoji.svelte";
-  import { postsFeedStore } from "../services/PostFeedService";
+  import { postsFeedStore } from "../services/postFeedService";
 
   const config = new Configuration({
     basePath: STAMP_API_BASE_URL,

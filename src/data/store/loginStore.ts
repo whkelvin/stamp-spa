@@ -1,5 +1,5 @@
 import { writable, readable, derived, type Writable } from "svelte/store";
-import { parseJwt } from "../services/JWTService";
+import { parseJwt } from "../services/jwtService";
 
 export const stampToken = writable<string>("");
 export const username = derived<Writable<string>, string>(
