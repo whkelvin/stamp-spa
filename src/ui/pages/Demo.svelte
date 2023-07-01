@@ -3,7 +3,7 @@
     notificationsStore,
     NotificationType,
     type Notification,
-    sendNotification,
+    showNotification,
   } from "../services/notificationService";
 
   function addNotification() {
@@ -12,7 +12,7 @@
       description: "hello world",
       type: NotificationType.info,
     };
-    sendNotification(noti);
+    showNotification(noti);
   }
   function addWarningNoti() {
     const noti: Notification = {
@@ -20,7 +20,7 @@
       description: "hello world",
       type: NotificationType.warning,
     };
-    sendNotification(noti);
+    showNotification(noti);
   }
   function addErrorNoti() {
     const noti: Notification = {
@@ -28,7 +28,7 @@
       description: "hello world",
       type: NotificationType.error,
     };
-    sendNotification(noti);
+    showNotification(noti);
   }
 </script>
 

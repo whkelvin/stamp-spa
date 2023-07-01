@@ -1,46 +1,26 @@
 <script lang="ts">
   import Emoji from "../icons/Emoji.svelte";
-  import * as stamp from "stamp-api-client";
-  import { STAMP_API_BASE_URL } from "../../../configs/constants";
-  import { stampToken } from "../../../data/store/loginStore";
   import { ModalType, openModal } from "../../services/modalService";
   import { ResponseError } from "stamp-api-client";
-  import { postsFeedStore } from "../../services/postFeedService";
   import {
     NotificationType,
-    type Notification,
-    sendNotification,
+    showNotification,
   } from "../../services/notificationService";
+  import * as postsFeedService from "../../services/postsFeedService";
+  import { type NewPost } from "../../models/newPost";
 
   let title = "";
   let link = "";
 
-  let accessToken: string;
-  stampToken.subscribe((value) => {
-    accessToken = value;
-  });
-
   async function writeYoutubePost() {
-    const config = new stamp.Configuration({
-      basePath: STAMP_API_BASE_URL,
-      accessToken: accessToken,
-    });
-    const postApi = new stamp.PostApi(config);
-    const createPostRequest: stamp.CreatePostRequest = {
-      postPostRequest: {
+    try {
+      const newPost: NewPost = {
         title: title,
         link: link,
         rootDomain: "youtube.com",
         description: "",
-      },
-    };
-
-    try {
-      const post: stamp.Post = await postApi.createPost(createPostRequest);
-      postsFeedStore.update((posts: stamp.Post[]) => {
-        posts = [post].concat(posts);
-        return posts;
-      });
+      };
+      await postsFeedService.createPost(newPost);
     } catch (error) {
       if (error.name == "ResponseError") {
         const responseError = error as ResponseError;
@@ -48,7 +28,7 @@
           responseError?.response?.status == 401 ||
           responseError?.response?.status == 403
         ) {
-          sendNotification({
+          showNotification({
             id: crypto.randomUUID.toString(),
             description: "Please log in first.",
             type: NotificationType.warning,

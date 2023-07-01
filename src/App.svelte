@@ -8,13 +8,12 @@
   import CreateYoutubePostModal from "./ui/components/modals/CreateYoutubePostModal.svelte";
   import { onMount } from "svelte";
   import { isTokenExpired } from "./data/services/jwtService";
-  import { stampToken } from "./data/store/loginStore";
+  import { stampToken } from "./ui/store/loginStore";
   import NotificationsWrapper from "./ui/components/notifications/NotificationsWrapper.svelte";
-  import Notification from "./ui/components/notifications/Notification.svelte";
 
   onMount(() => {
     const token = window.localStorage.getItem("stampToken");
-    if (token != undefined && token != "") {
+    if (token != undefined && token != "" && token != null) {
       if (isTokenExpired(token) == false) {
         stampToken.update(() => token);
       }

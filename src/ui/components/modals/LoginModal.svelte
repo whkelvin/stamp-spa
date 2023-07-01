@@ -1,8 +1,8 @@
 <script lang="ts">
   import Emoji from "../icons/Emoji.svelte";
-  import { signInWithGithub } from "../../../data/services/authService";
+  import { signInWithGithub } from "../../../ui/services/authService";
   import GithubIcon from "../icons/GithubIcon.svelte";
-  import { isUserLoggedIn } from "../../../data/store/loginStore";
+  import { isUserLoggedIn } from "../../../ui/store/loginStore";
   import { ModalType, closeModal } from "../../services/modalService";
 
   $: {

@@ -1,4 +1,4 @@
-import { derived, readable, writable, type Writable } from "svelte/store";
+import { writable } from "svelte/store";
 
 export enum NotificationType {
   info,
@@ -12,20 +12,13 @@ export interface Notification {
   type: NotificationType;
 }
 
-const _notificationsStore = writable<Notification[]>([]);
+export const notificationsStore = writable<Notification[]>([]);
 
-export const notificationsStore = derived<
-  Writable<Notification[]>,
-  Notification[]
->(
-  _notificationsStore,
-  (_notificationsStore: Notification[]) => _notificationsStore
-);
-
-export function sendNotification(notification: Notification) {
-  _notificationsStore.update((notifications: Notification[]) => {
+export function showNotification(notification: Notification) {
+  notificationsStore.update((notifications: Notification[]) => {
     notifications = notifications.concat([notification]);
-    if (notifications.length > 2) {
+    const MAX_NOTIFICATION_TO_SHOW = 2;
+    if (notifications.length > MAX_NOTIFICATION_TO_SHOW) {
       notifications.shift();
     }
     return notifications;

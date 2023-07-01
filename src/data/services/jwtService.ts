@@ -48,5 +48,6 @@ export function parseJwt(token: string): UserClaim | null {
 
 export function isTokenExpired(token: string): boolean {
   const claim = parseJwt(token);
+  if (!claim) return true;
   return Date.now() >= claim.exp * 1000;
 }
