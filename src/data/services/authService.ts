@@ -3,6 +3,7 @@ import * as firebase from "../../data/clients/firebase";
 
 export async function signInWithGithub(): Promise<string> {
   const token = await firebase.signInWithGithub();
+  console.log(token);
   const jwt: string = await stamp.loginWithGithub(token);
   return jwt;
 }

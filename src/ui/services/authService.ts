@@ -4,7 +4,7 @@ import * as authService from "../../data/services/authService";
 
 export async function signInWithGithub() {
   const jwt = await authService.signInWithGithub();
-  signIn(jwt);
+  await signIn(jwt);
 }
 
 export async function signOut() {

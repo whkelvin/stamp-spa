@@ -1,5 +1,7 @@
 import * as stampApiClient from "stamp-api-client";
 import { STAMP_API_BASE_URL } from "../../configs/constants";
+import { stampToken } from "../../ui/store/loginStore";
+import { get } from "svelte/store";
 
 export interface Post {
   id: string;
@@ -23,17 +25,16 @@ export interface CreatePostRequest {
   description: string;
 }
 
-const config = new stampApiClient.Configuration({
-  basePath: STAMP_API_BASE_URL,
-});
-
-const authApi = new stampApiClient.AuthApi(config);
-const postApi = new stampApiClient.PostApi(config);
-
 export async function getRecentPosts(
   lastFetchedItemId: string,
   pageSize: number
 ): Promise<PostResultSet> {
+  const config = new stampApiClient.Configuration({
+    basePath: STAMP_API_BASE_URL,
+    accessToken: get(stampToken),
+  });
+  const postApi = new stampApiClient.PostApi(config);
+
   const res: stampApiClient.PostResultSet = await postApi.getRecentPosts({
     lastFetchedItemId: lastFetchedItemId,
     size: pageSize,
@@ -59,6 +60,10 @@ export async function getRecentPosts(
 }
 
 export async function loginWithGithub(accessToken: string): Promise<string> {
+  const config = new stampApiClient.Configuration({
+    basePath: STAMP_API_BASE_URL,
+  });
+  const authApi = new stampApiClient.AuthApi(config);
   const req: stampApiClient.LogInRequest = {
     accessToken: accessToken,
     authProvider: "github",
@@ -70,11 +75,22 @@ export async function loginWithGithub(accessToken: string): Promise<string> {
 }
 
 export async function refreshToken(): Promise<string> {
+  const config = new stampApiClient.Configuration({
+    basePath: STAMP_API_BASE_URL,
+    accessToken: get(stampToken),
+  });
+  const authApi = new stampApiClient.AuthApi(config);
   const res: stampApiClient.RefreshTokenResponse = await authApi.refreshToken();
   return res.jwt;
 }
 
 export async function createPost(req: CreatePostRequest): Promise<Post> {
+  const config = new stampApiClient.Configuration({
+    basePath: STAMP_API_BASE_URL,
+    accessToken: get(stampToken),
+  });
+  console.log(get(stampToken));
+  const postApi = new stampApiClient.PostApi(config);
   const createPostRequest: stampApiClient.CreatePostRequest = {
     postPostRequest: {
       title: req.title,
