@@ -89,7 +89,6 @@ export async function createPost(req: CreatePostRequest): Promise<Post> {
     basePath: STAMP_API_BASE_URL,
     accessToken: get(stampToken),
   });
-  console.log(get(stampToken));
   const postApi = new stampApiClient.PostApi(config);
   const createPostRequest: stampApiClient.CreatePostRequest = {
     postPostRequest: {
