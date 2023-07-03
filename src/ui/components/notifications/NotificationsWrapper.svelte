@@ -4,7 +4,8 @@
 </script>
 
 <div
-  class="bg-transparent fixed block z-50 top-2 left-8 right-8 md:left-16 md:right-16"
+  class="bg-transparent fixed block top-2 left-8 right-8 md:left-16 md:right-16"
+  style="z-index: 999;"
 >
   {#each [...$notificationsStore].reverse() as noti (noti.id)}
     <Notification notification={noti} />

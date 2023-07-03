@@ -19,7 +19,10 @@
         return;
       }
 
-      const res = await postsFeedService.loadRecentPosts(lastFetchedItemId, pageSize);
+      const res = await postsFeedService.loadRecentPosts(
+        lastFetchedItemId,
+        pageSize
+      );
       if (res.count != 0) {
         hasPageLoaded[lastFetchedItemId] = true;
         lastFetchedItemId = res.posts.at(-1).id;

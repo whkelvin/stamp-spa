@@ -3,7 +3,11 @@
   import { signInWithGithub } from "../../../ui/services/authService";
   import GithubIcon from "../icons/GithubIcon.svelte";
   import { isUserLoggedIn } from "../../../ui/store/loginStore";
-  import { ModalType, closeModal } from "../../services/modalService";
+  import {
+    ModalType,
+    closeModal,
+    LoginModalCheckboxId,
+  } from "../../services/modalService";
 
   $: {
     if ($isUserLoggedIn) {
@@ -12,14 +16,11 @@
   }
 </script>
 
-<input
-  type="checkbox"
-  id={ModalType.LoginModal.toString()}
-  class="modal-toggle"
-/>
+<input type="checkbox" id={LoginModalCheckboxId} class="modal-toggle" />
 <label
-  for={ModalType.LoginModal.toString()}
-  class="modal modal-bottom sm:modal-middle cursor-pointer z-10"
+  for={LoginModalCheckboxId}
+  class="modal modal-bottom sm:modal-middle cursor-pointer"
+  id={ModalType.LoginModal.toString()}
 >
   <label class="modal-box relative" for="">
     <div class="flex">

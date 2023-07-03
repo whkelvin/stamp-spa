@@ -1,16 +1,16 @@
 <script lang="ts">
   import Emoji from "../icons/Emoji.svelte";
-  import { ModalType } from "../../services/modalService";
+  import {
+    ModalType,
+    ComingSoonModalCheckboxId,
+    closeModal,
+  } from "../../services/modalService";
 </script>
 
-<input
-  type="checkbox"
-  id={ModalType.ComingSoonModal.toString()}
-  class="modal-toggle"
-/>
+<input type="checkbox" id={ComingSoonModalCheckboxId} class="modal-toggle" />
 <label
-  for={ModalType.ComingSoonModal.toString()}
-  class="modal modal-bottom sm:modal-middle cursor-pointer z-10"
+  for={ComingSoonModalCheckboxId}
+  class="modal modal-bottom sm:modal-middle cursor-pointer"
 >
   <label class="modal-box relative" for="">
     <div class="flex">
@@ -20,8 +20,10 @@
 
     <p class="py-4">Stay tuned. This feature is coming soon!</p>
     <div class="modal-action">
-      <label for={ModalType.ComingSoonModal.toString()} class="btn btn-primary"
-        >Yay!</label
+      <button
+        for={ModalType.ComingSoonModal.toString()}
+        class="btn btn-primary"
+        on:click={() => closeModal(ModalType.ComingSoonModal)}>Yay!</button
       >
     </div>
   </label>

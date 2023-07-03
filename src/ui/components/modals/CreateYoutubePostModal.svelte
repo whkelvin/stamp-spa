@@ -1,6 +1,11 @@
 <script lang="ts">
   import Emoji from "../icons/Emoji.svelte";
-  import { ModalType, openModal } from "../../services/modalService";
+  import {
+    ModalType,
+    openModal,
+    CreateYoutubePostModalCheckboxId,
+    closeModal,
+  } from "../../services/modalService";
   import { ResponseError } from "stamp-api-client";
   import {
     NotificationType,
@@ -12,6 +17,13 @@
   let title = "";
   let link = "";
 
+  class ValidationError extends Error {
+    constructor(message: string) {
+      super(message);
+      this.name = "ValidationError";
+    }
+  }
+
   async function writeYoutubePost() {
     try {
       const newPost: NewPost = {
@@ -20,7 +32,15 @@
         rootDomain: "youtube.com",
         description: "",
       };
+      if (title == "" || title == null || title == undefined) {
+        throw new ValidationError("Title is required.");
+      }
+      if (link == "" || link == null || link == undefined) {
+        throw new ValidationError("Link is required.");
+      }
+
       await postsFeedService.createPost(newPost);
+      closeModal(ModalType.CreateYoutubePostModal);
     } catch (error) {
       if (error.name == "ResponseError") {
         const responseError = error as ResponseError;
@@ -29,29 +49,46 @@
           responseError?.response?.status == 403
         ) {
           showNotification({
-            id: crypto.randomUUID.toString(),
+            id: crypto.randomUUID(),
             description: "Please log in first.",
             type: NotificationType.warning,
           });
           openModal(ModalType.LoginModal);
+          return;
         }
-      } else {
-        console.error("create post failed");
       }
+
+      if (error.name == "ValidationError") {
+        showNotification({
+          id: crypto.randomUUID(),
+          description: error.message,
+          type: NotificationType.warning,
+        });
+        return;
+      }
+
+      showNotification({
+        id: crypto.randomUUID(),
+        description:
+          "Cannot Create Post. Check your inputs or try again later.",
+        type: NotificationType.error,
+      });
     }
   }
 </script>
 
 <input
   type="checkbox"
-  id={ModalType.CreateYoutubePostModal.toString()}
+  id={CreateYoutubePostModalCheckboxId}
   class="modal-toggle"
 />
+
 <label
-  for={ModalType.CreateYoutubePostModal.toString()}
-  class="modal modal-bottom sm:modal-middle cursor-pointer z-10"
+  for={CreateYoutubePostModalCheckboxId}
+  class="modal modal-bottom sm:modal-middle cursor-pointer"
+  id={ModalType.CreateYoutubePostModal.toString()}
 >
-  <div class="modal-box">
+  <label class="modal-box" for="">
     <div class="flex">
       <h3 class="font-bold text-lg m-auto mb-8">Share From Youtube</h3>
     </div>
@@ -71,14 +108,11 @@
       />
     </div>
 
-    <div class="modal-action flex flex-col" on:click={writeYoutubePost}>
-      <label
-        for={ModalType.CreateYoutubePostModal.toString()}
-        class="btn btn-primary btn-wide m-auto"
-      >
+    <button class="flex flex-col m-auto" on:click={writeYoutubePost}>
+      <div class="btn btn-primary btn-wide m-auto">
         <Emoji symbol="🚀" label="deploy" />
         <div class="ml-2">Deploy</div>
-      </label>
-    </div>
-  </div>
+      </div>
+    </button>
+  </label>
 </label>
